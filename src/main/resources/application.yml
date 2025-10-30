@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: spring-security-jwt
+
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/jwt_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: iuytrewq
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+#        dialect: org.hibernate.dialect.MySQLDialect
+  
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# JWT Configuration
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  access-token-expiration: 1800000  # 30 minutes in milliseconds
+  refresh-token-expiration: 604800000  # 7 days in milliseconds
+
+# Logging
+logging:
+  level:
+    com.example: DEBUG
+    org.springframework.security: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
